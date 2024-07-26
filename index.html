@@ -1,1 +1,94 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Country Graphs</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .axis text {
+            font: 10px sans-serif;
+        }
+        .axis path, .axis line {
+            fill: none;
+            shape-rendering: crispEdges;
+        }
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="graphs"></div>
+
+    <script>
+        d3.csv("complete_renewable_energy_dataset.csv").then(function(data) {
+            // Parse the data
+            data.forEach(function(d) {
+                d.Year = +d.Year;
+                d['Production (GWh)'] = +d['Production (GWh)'];
+            });
+
+            // Nest data by country
+            const nestedData = d3.group(data, d => d.Country);
+
+            // Set up dimensions
+            const margin = {top: 20, right: 30, bottom: 40, left: 40},
+                  width = 800 - margin.left - margin.right,
+                  height = 400 - margin.top - margin.bottom;
+
+            // Create an SVG for each country
+            nestedData.forEach((values, key) => {
+                const svg = d3.select("#graphs").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+                // Set up scales
+                const x = d3.scaleTime()
+                    .domain(d3.extent(values, d => d.Year))
+                    .range([0, width]);
+
+                const y = d3.scaleLinear()
+                    .domain([0, d3.max(values, d => d['Production (GWh)'])])
+                    .nice()
+                    .range([height, 0]);
+
+                // Create axes
+                const xAxis = d3.axisBottom(x).ticks(d3.timeYear.every(1));
+                const yAxis = d3.axisLeft(y);
+
+                // Add x-axis
+                svg.append("g")
+                    .attr("transform", `translate(0,${height})`)
+                    .call(xAxis);
+
+                // Add y-axis
+                svg.append("g")
+                    .call(yAxis);
+
+                // Add line path
+                const line = d3.line()
+                    .x(d => x(d.Year))
+                    .y(d => y(d['Production (GWh)']));
+
+                svg.append("path")
+                    .datum(values)
+                    .attr("class", "line")
+                    .attr("d", line);
+
+                // Add country label
+                svg.append("text")
+                    .attr("x", width / 2)
+                    .attr("y", -10)
+                    .attr("text-anchor", "middle")
+                    .style("font-size", "16px")
+                    .style("font-weight", "bold")
+                    .text(key);
+            });
+        });
+    </script>
+</body>
+</html>
