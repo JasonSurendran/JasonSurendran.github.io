@@ -147,7 +147,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         const x = d3.scaleBand()
             .range([0, width])
             .padding(0.1)
-            .domain(filteredData.map(d => `${d['Country']} (${d['Year']})`));
+            .domain(filteredData.map((d, i) => `${d['Country']} (${d['Year']}) - ${i}`));
 
         const y = d3.scaleLinear()
             .range([height, 0])
@@ -168,7 +168,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", d => x(`${d['Country']} (${d['Year']})`))
+            .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
             .attr("y", d => y(+d[selectedMetric]))
             .attr("width", x.bandwidth())
             .attr("height", d => height - y(+d[selectedMetric]))
