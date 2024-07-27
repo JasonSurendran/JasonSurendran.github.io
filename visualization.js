@@ -4,6 +4,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     const svg1 = d3.select("#scene1").append("svg").attr("width", width).attr("height", height);
 
     const nestedData = d3.rollups(data, v => d3.sum(v, d => d['Production (GWh)']), d => d.Year);
+    nestedData.sort((a, b) => d3.ascending(a[0], b[0]));  // Sort by year
     const years = nestedData.map(d => d[0]);
     const production = nestedData.map(d => d[1]);
 
@@ -16,10 +17,10 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     svg1.append("path")
         .datum(nestedData)
-        .attr("fill", "none")
+        .attr("d", line)
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
-        .attr("d", line);
+        .attr("fill", "none");
 
     svg1.append("g")
         .attr("transform", `translate(0, ${height - 50})`)
@@ -28,6 +29,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     svg1.append("g")
         .attr("transform", `translate(50, 0)`)
         .call(d3.axisLeft(yScale));
+}).catch(error => {
+    console.error("Error loading data for Scene 1:", error);
 });
 
 // Scene 2: Investments in Renewable Energy
@@ -36,6 +39,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     const svg2 = d3.select("#scene2").append("svg").attr("width", width).attr("height", height);
 
     const nestedData = d3.rollups(data, v => d3.sum(v, d => d['Investments (USD)']), d => d.Year);
+    nestedData.sort((a, b) => d3.ascending(a[0], b[0]));  // Sort by year
     const years = nestedData.map(d => d[0]);
     const investments = nestedData.map(d => d[1]);
 
@@ -60,6 +64,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     svg2.append("g")
         .attr("transform", `translate(50, 0)`)
         .call(d3.axisLeft(yScale));
+}).catch(error => {
+    console.error("Error loading data for Scene 2:", error);
 });
 
 // Scene 3: Jobs Created by Renewable Energy
@@ -68,6 +74,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     const svg3 = d3.select("#scene3").append("svg").attr("width", width).attr("height", height);
 
     const nestedData = d3.rollups(data, v => d3.sum(v, d => d['Jobs']), d => d.Country);
+    nestedData.sort((a, b) => d3.ascending(a[0], b[0]));  // Sort by country
     const countries = nestedData.map(d => d[0]);
     const jobs = nestedData.map(d => d[1]);
 
@@ -91,4 +98,6 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     svg3.append("g")
         .attr("transform", `translate(50, 0)`)
         .call(d3.axisLeft(yScale));
+}).catch(error => {
+    console.error("Error loading data for Scene 3:", error);
 });
