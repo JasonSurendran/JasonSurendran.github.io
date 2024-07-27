@@ -13,9 +13,9 @@ body {
     cursor: pointer;
 }
 
-#buttons .selected {
+#buttons button.selected {
     font-weight: bold;
-    background-color: lightgreen;
+    background-color: lightgreen !important;
 }
 
 #year-slider {
