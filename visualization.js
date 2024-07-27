@@ -7,6 +7,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     // Variables to keep track of selected energy type and year
     let selectedEnergyType = energyTypes[0];
     let selectedYear = minYear;
+    let selectedMetric = 'Production (GWh)';
 
     // Annotations data
     const annotations = [
@@ -31,6 +32,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
                 d3.selectAll("#buttons button").classed("selected", false);
                 d3.select(this).classed("selected", true);
                 updateBoxes();
+                updateBarGraph();
             });
     });
 
@@ -43,18 +45,36 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             selectedYear = +this.value;
             d3.select("#year-value").text(selectedYear);
             updateBoxes();
+            updateBarGraph();
         });
 
     // Set the initial year value display
     d3.select("#year-value").text(minYear);
 
+    // Create buttons for each metric
+    const barControlsDiv = d3.select("#bar-controls");
+    const metrics = {
+        'btn-production': 'Production (GWh)',
+        'btn-installed-capacity': 'Installed Capacity (MW)',
+        'btn-jobs': ' Jobs',
+        'btn-investment': 'Investments (USD)'
+    };
+    Object.entries(metrics).forEach(([id, metric]) => {
+        barControlsDiv.append("button")
+            .text(metric.split(' ')[0])
+            .attr("id", id)
+            .on("click", function() {
+                selectedMetric = metric;
+                d3.selectAll("#bar-controls button").classed("selected", false);
+                d3.select(this).classed("selected", true);
+                updateBarGraph();
+            });
+    });
+
     // Function to update the information boxes based on selected energy type and year
     function updateBoxes() {
         const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && +d['Year'] === selectedYear);
         
-        // Debugging: log the filtered data to the console
-        console.log("Filtered Data:", filteredData);
-
         const boxesDiv = d3.select("#boxes");
         boxesDiv.selectAll(".box").remove();
         
@@ -76,6 +96,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     updateBoxes();
     // Set the initial selected button
     d3.select(`#btn-${selectedEnergyType}`).classed("selected", true);
+    d3.select("#btn-production").classed("selected", true);
 
     // Function to update annotation text and position
     function updateAnnotation() {
@@ -104,6 +125,56 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     // Initial call to display the first annotation
     updateAnnotation();
 
+    // Function to update the bar graph based on selected metric
+    function updateBarGraph() {
+        const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && +d['Year'] === selectedYear);
+        
+        const barGraphDiv = d3.select("#bar-graph");
+        barGraphDiv.selectAll("*").remove(); // Clear previous bar graph
+
+        const margin = { top: 20, right: 30, bottom: 40, left: 90 };
+        const width = 1000 - margin.left - margin.right;
+        const height = 500 - margin.top - margin.bottom;
+
+        const svg = barGraphDiv.append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const x = d3.scaleBand()
+            .range([0, width])
+            .padding(0.1)
+            .domain(filteredData.map(d => `${d['Country']} (${d['Year']})`));
+
+        const y = d3.scaleLinear()
+            .range([height, 0])
+            .domain([0, d3.max(filteredData, d => +d[selectedMetric.replace(' ', '')])]);
+
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x))
+            .selectAll("text")
+            .attr("transform", "rotate(-45)")
+            .style("text-anchor", "end");
+
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        svg.selectAll(".bar")
+            .data(filteredData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", d => x(`${d['Country']} (${d['Year']})`))
+            .attr("y", d => y(+d[selectedMetric.replace(' ', '')]))
+            .attr("width", x.bandwidth())
+            .attr("height", d => height - y(+d[selectedMetric.replace(' ', '')]))
+            .attr("fill", "steelblue");
+    }
+
+    // Initial call to display the bar graph
+    updateBarGraph();
 }).catch(error => {
     console.error("Error loading data:", error);
 });

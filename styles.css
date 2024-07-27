@@ -98,3 +98,17 @@ h1 {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+#bar-controls {
+    margin-top: 20px;
+}
+
+#bar-controls button {
+    margin: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#bar-graph {
+    margin-top: 20px;
+}
