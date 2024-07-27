@@ -31,7 +31,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .on("click", function() {
                 selectedEnergyType = type;
                 d3.selectAll("#buttons button").classed("selected", false);
-                d3.select(this).classed("selected", true);
+                d3.select(this).classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
                 updateBoxes();
                 updateBarGraph();
             });
@@ -67,7 +67,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .on("click", function() {
                 selectedMetric = metric;
                 d3.selectAll("#bar-controls button").classed("selected", false);
-                d3.select(this).classed("selected", true);
+                d3.select(this).classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
                 updateBarGraph();
             });
     });
@@ -96,8 +96,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     // Initial call to display boxes
     updateBoxes();
     // Set the initial selected button
-    d3.select(`#btn-${selectedEnergyType}`).classed("selected", true);
-    d3.select("#btn-production").classed("selected", true);
+    d3.select(`#btn-${selectedEnergyType}`).classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
+    d3.select("#btn-production").classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
 
     // Function to update annotation text and position
     function updateAnnotation() {
@@ -133,7 +133,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         const barGraphDiv = d3.select("#bar-graph");
         barGraphDiv.selectAll("*").remove(); // Clear previous bar graph
 
-        const margin = { top: 20, right: 30, bottom: 70, left: 90 };
+        const margin = { top: 20, right: 30, bottom: 90, left: 90 };
         const width = 1000 - margin.left - margin.right;
         const height = 500 - margin.top - margin.bottom;
 
@@ -176,33 +176,24 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         // Add x-axis label
         svg.append("text")
             .attr("class", "x label")
-            .attr("text-anchor", "end")
+            .attr("text-anchor", "middle")
             .attr("x", width / 2)
-            .attr("y", height + margin.bottom - 10)
+            .attr("y", height + margin.bottom - 40)
             .text("Country (Year)");
 
-               // Add x-axis label
-               svg.append("text")
-               .attr("class", "x label")
-               .attr("text-anchor", "end")
-               .attr("x", width / 2)
-               .attr("y", height + margin.bottom - 10)
-               .text("Country (Year)");
-   
-           // Add y-axis label
-           svg.append("text")
-               .attr("class", "y label")
-               .attr("text-anchor", "end")
-               .attr("x", -height / 2)
-               .attr("y", -margin.left + 20)
-               .attr("dy", ".75em")
-               .attr("transform", "rotate(-90)")
-               .text(selectedMetric);
-       }
-   
-       // Initial call to display the bar graph
-       updateBarGraph();
-   }).catch(error => {
-       console.error("Error loading data:", error);
-   });
-   
+        // Add y-axis label
+        svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "middle")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 20)
+            .attr("dy", ".75em")
+            .attr("transform", "rotate(-90)")
+            .text(selectedMetric);
+    }
+
+    // Initial call to display the bar graph
+    updateBarGraph();
+}).catch(error => {
+    console.error("Error loading data:", error);
+});
