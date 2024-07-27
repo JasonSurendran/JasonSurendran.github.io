@@ -17,8 +17,21 @@ body {
     margin: 20px;
 }
 
-.chart {
-    width: 800px;
-    height: 400px;
-    margin: 50px auto;
+#boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.box h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
 }
