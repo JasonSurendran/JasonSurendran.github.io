@@ -30,8 +30,14 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .attr("id", `btn-${type}`)
             .on("click", function() {
                 selectedEnergyType = type;
-                d3.selectAll("#buttons button").classed("selected", false);
-                d3.select(this).classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
+                d3.selectAll("#buttons button")
+                    .classed("selected", false)
+                    .style("font-weight", "normal")
+                    .style("background-color", "");
+                d3.select(this)
+                    .classed("selected", true)
+                    .style("font-weight", "bold")
+                    .style("background-color", "lightgreen");
                 updateBoxes();
                 updateBarGraph();
             });
@@ -66,8 +72,14 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .attr("id", id)
             .on("click", function() {
                 selectedMetric = metric;
-                d3.selectAll("#bar-controls button").classed("selected", false);
-                d3.select(this).classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
+                d3.selectAll("#bar-controls button")
+                    .classed("selected", false)
+                    .style("font-weight", "normal")
+                    .style("background-color", "");
+                d3.select(this)
+                    .classed("selected", true)
+                    .style("font-weight", "bold")
+                    .style("background-color", "lightgreen");
                 updateBarGraph();
             });
     });
@@ -96,8 +108,14 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     // Initial call to display boxes
     updateBoxes();
     // Set the initial selected button
-    d3.select(`#btn-${selectedEnergyType}`).classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
-    d3.select("#btn-production").classed("selected", true).style("font-weight", "bold").style("background-color", "lightgreen");
+    d3.select(`#btn-${selectedEnergyType}`)
+        .classed("selected", true)
+        .style("font-weight", "bold")
+        .style("background-color", "lightgreen");
+    d3.select("#btn-production")
+        .classed("selected", true)
+        .style("font-weight", "bold")
+        .style("background-color", "lightgreen");
 
     // Function to update annotation text and position
     function updateAnnotation() {
@@ -163,15 +181,15 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .call(d3.axisLeft(y));
 
         svg.selectAll(".bar")
-            .data(filteredData)
-            .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
-            .attr("y", d => y(+d[selectedMetric]))
-            .attr("width", x.bandwidth())
-            .attr("height", d => height - y(+d[selectedMetric]))
-            .attr("fill", "steelblue");
+        .data(filteredData)
+        .enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
+        .attr("y", d => y(+d[selectedMetric]))
+        .attr("width", x.bandwidth())
+        .attr("height", d => height - y(+d[selectedMetric]))
+        .attr("fill", "steelblue");
 
         // Add x-axis label
         svg.append("text")
