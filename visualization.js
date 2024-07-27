@@ -54,7 +54,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             box.append("p").text(`Energy Type: ${d['Energy Type']}`);
             box.append("p").text(`Production: ${d['Production (GWh)']} GWh`);
             box.append("p").text(`Installed Capacity: ${d['Installed Capacity (MW)']} MW`);
-            box.append("p").text(`Investments: $${formatMillion(d['Investments (USD)'] / 1e6)} million`);
+            const investmentMillions = d['Investments (USD)'] / 1e6;
+            box.append("p").text(`Investments: $${formatMillion(investmentMillions)} million`);
             box.append("p").text(`Jobs: ${d[' Jobs']}`);
         });
     }
