@@ -23,6 +23,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Create buttons for each energy type
     const buttonsDiv = d3.select("#buttons");
+    buttonsDiv.selectAll("*").remove(); // Ensure no duplicate buttons
     energyTypes.forEach(type => {
         buttonsDiv.append("button")
             .text(type)
@@ -53,6 +54,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Create buttons for each metric
     const barControlsDiv = d3.select("#bar-controls");
+    barControlsDiv.selectAll("*").remove(); // Ensure no duplicate buttons
     const metrics = {
         'btn-production': 'Production (GWh)',
         'btn-installed-capacity': 'Installed Capacity (MW)',
@@ -189,11 +191,10 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .attr("dy", ".75em")
             .attr("transform", "rotate(-90)")
             .text(selectedMetric);
-        }
-    
-        // Initial call to display the bar graph
-        updateBarGraph();
-    }).catch(error => {
-        console.error("Error loading data:", error);
-    });
-    
+    }
+
+    // Initial call to display the bar graph
+    updateBarGraph();
+}).catch(error => {
+    console.error("Error loading data:", error);
+});
