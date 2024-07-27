@@ -128,7 +128,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     // Function to update the bar graph based on selected metric
     function updateBarGraph() {
         const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && +d['Year'] === selectedYear);
-        
+
         const barGraphDiv = d3.select("#bar-graph");
         barGraphDiv.selectAll("*").remove(); // Clear previous bar graph
 
