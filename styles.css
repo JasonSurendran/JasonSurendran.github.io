@@ -35,7 +35,7 @@ h1 {
     margin-top: 10px;
 }
 
-#year-slider {
+#year-slider-container input[type="range"] {
     margin: 0 10px;
 }
 
