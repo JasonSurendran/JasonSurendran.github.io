@@ -42,12 +42,35 @@ body {
 }
 
 #annotation-container {
+    position: relative;
     text-align: center;
     margin-top: 20px;
 }
 
 #annotation {
-    margin-bottom: 10px;
+    position: absolute;
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#annotation:after {
+    content: '';
+    position: absolute;
+    bottom: -20px; /* Position at the bottom */
+    left: 50px; /* Position the "tail" */
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid black; /* Create the triangular "tail" */
+}
+
+#annotation-controls {
+    margin-top: 10px;
 }
 
 #annotation-controls button {
