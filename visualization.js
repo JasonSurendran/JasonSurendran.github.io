@@ -35,7 +35,11 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Function to update the information boxes based on selected energy type and year
     function updateBoxes() {
-        const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && d['Year'] === selectedYear);
+        const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && +d['Year'] === selectedYear);
+        
+        // Debugging: log the filtered data to the console
+        console.log("Filtered Data:", filteredData);
+
         const boxesDiv = d3.select("#boxes");
         boxesDiv.selectAll(".box").remove();
         
