@@ -79,7 +79,9 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     function updateAnnotation() {
         const annotation = annotations[currentAnnotationIndex];
         d3.select("#annotation-text").text(annotation.text);
-        d3.select("#annotation").style("top", annotation.position.top).style("left", annotation.position.left);
+        d3.select("#annotation")
+            .style("top", annotation.position.top)
+            .style("left", annotation.position.left);
     }
 
     // Set up annotation navigation
