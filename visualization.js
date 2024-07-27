@@ -132,7 +132,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         const barGraphDiv = d3.select("#bar-graph");
         barGraphDiv.selectAll("*").remove(); // Clear previous bar graph
 
-        const margin = { top: 20, right: 30, bottom: 40, left: 90 };
+        const margin = { top: 20, right: 30, bottom: 70, left: 90 };
         const width = 1000 - margin.left - margin.right;
         const height = 500 - margin.top - margin.bottom;
 
@@ -171,10 +171,29 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .attr("width", x.bandwidth())
             .attr("height", d => height - y(+d[selectedMetric.replace(' ', '')]))
             .attr("fill", "steelblue");
-    }
 
-    // Initial call to display the bar graph
-    updateBarGraph();
-}).catch(error => {
-    console.error("Error loading data:", error);
-});
+        // Add x-axis label
+        svg.append("text")
+            .attr("class", "x label")
+            .attr("text-anchor", "end")
+            .attr("x", width / 2)
+            .attr("y", height + margin.bottom - 10)
+            .text("Country (Year)");
+
+        // Add y-axis label
+        svg.append("text")
+            .attr("class", "y label")
+            .attr("text-anchor", "end")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 20)
+            .attr("dy", ".75em")
+            .attr("transform", "rotate(-90)")
+            .text(selectedMetric);
+        }
+    
+        // Initial call to display the bar graph
+        updateBarGraph();
+    }).catch(error => {
+        console.error("Error loading data:", error);
+    });
+    
