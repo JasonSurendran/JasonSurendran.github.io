@@ -174,29 +174,28 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .attr("height", d => height - y(+d[selectedMetric]))
             .attr("fill", "steelblue");
 
-        // Add x-axis label
-        svg.append("text")
-        .attr("class", "x label")
-        .attr("text-anchor", "end")
-        .attr("x", width / 2)
-        .attr("y", height + margin.bottom - 10)
-        .text("Country (Year)");
-
-    // Add y-axis label
-    svg.append("text")
-        .attr("class", "y label")
-        .attr("text-anchor", "end")
-        .attr("x", -height / 2)
-        .attr("y", -margin.left + 20)
-        .attr("dy", ".75em")
-        .attr("transform", "rotate(-90)")
-        .text(selectedMetric);
-}
-
-// Initial call to display the bar graph
-updateBarGraph();
-}).catch(error => {
-console.error("Error loading data:", error);
-});
-
-
+                // Add x-axis label
+                svg.append("text")
+                .attr("class", "x label")
+                .attr("text-anchor", "end")
+                .attr("x", width / 2)
+                .attr("y", height + margin.bottom - 10)
+                .text("Country (Year)");
+    
+            // Add y-axis label
+            svg.append("text")
+                .attr("class", "y label")
+                .attr("text-anchor", "end")
+                .attr("x", -height / 2)
+                .attr("y", -margin.left + 20)
+                .attr("dy", ".75em")
+                .attr("transform", "rotate(-90)")
+                .text(selectedMetric);
+        }
+    
+        // Initial call to display the bar graph
+        updateBarGraph();
+    }).catch(error => {
+        console.error("Error loading data:", error);
+    });
+    
