@@ -1,5 +1,11 @@
 body {
     font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 20px 0;
 }
 
 #controls {
@@ -43,7 +49,6 @@ body {
 
 #annotation-container {
     position: relative;
-    text-align: center;
     margin-top: 20px;
 }
 
