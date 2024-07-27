@@ -21,7 +21,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
                 updateBoxes();
             });
     });
-
+    //
     // Create a year slider
     const yearSlider = d3.select("#year-slider")
         .attr("min", minYear)
