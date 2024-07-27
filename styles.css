@@ -32,11 +32,11 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    gap: 10px; /* Add gap between slider and year value */
 }
 
-#year-slider-container input[type="range"] {
-    margin: 0 10px;
+#year-slider {
+    flex-grow: 1; /* Allow the slider to take up available space */
 }
 
 #boxes {
