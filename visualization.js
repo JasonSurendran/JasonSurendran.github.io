@@ -13,8 +13,11 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     energyTypes.forEach(type => {
         buttonsDiv.append("button")
             .text(type)
-            .on("click", () => {
+            .attr("id", `btn-${type}`)
+            .on("click", function() {
                 selectedEnergyType = type;
+                d3.selectAll("#buttons button").classed("selected", false);
+                d3.select(this).classed("selected", true);
                 updateBoxes();
             });
     });
@@ -56,6 +59,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Initial call to display boxes
     updateBoxes();
+    // Set the initial selected button
+    d3.select(`#btn-${selectedEnergyType}`).classed("selected", true);
 }).catch(error => {
     console.error("Error loading data:", error);
 });

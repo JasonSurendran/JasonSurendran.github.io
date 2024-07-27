@@ -13,6 +13,10 @@ body {
     cursor: pointer;
 }
 
+#buttons .selected {
+    font-weight: bold;
+}
+
 #year-slider {
     margin: 20px;
 }
