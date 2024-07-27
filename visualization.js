@@ -46,13 +46,15 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         const boxesDiv = d3.select("#boxes");
         boxesDiv.selectAll(".box").remove();
         
+        const formatMillion = d3.format(".3f");
+
         filteredData.forEach(d => {
             const box = boxesDiv.append("div").attr("class", "box");
             box.append("h3").text(`${d['Country']} (${d['Year']})`);
             box.append("p").text(`Energy Type: ${d['Energy Type']}`);
             box.append("p").text(`Production: ${d['Production (GWh)']} GWh`);
             box.append("p").text(`Installed Capacity: ${d['Installed Capacity (MW)']} MW`);
-            box.append("p").text(`Investments: $${d['Investments (USD)']}`);
+            box.append("p").text(`Investments: $${formatMillion(d['Investments (USD)'] / 1e6)} million`);
             box.append("p").text(`Jobs: ${d[' Jobs']}`);
         });
     }
