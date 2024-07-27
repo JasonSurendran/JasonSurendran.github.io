@@ -15,6 +15,7 @@ body {
 
 #buttons .selected {
     font-weight: bold;
+    background-color: lightgreen;
 }
 
 #year-slider {
