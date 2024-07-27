@@ -1,20 +1,10 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-h1 {
-    font-size: 2em;
-    margin: 20px 0;
 }
 
 #controls {
     text-align: center;
     margin-bottom: 20px;
-}
-
-#buttons {
-    margin-bottom: 10px;
 }
 
 #buttons button {
@@ -28,15 +18,8 @@ h1 {
     background-color: lightgreen;
 }
 
-#year-slider-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Add gap between slider and year value */
-}
-
 #year-slider {
-    flex-grow: 1; /* Allow the slider to take up available space */
+    margin: 20px;
 }
 
 #boxes {
@@ -60,6 +43,7 @@ h1 {
 
 #annotation-container {
     position: relative;
+    text-align: center;
     margin-top: 20px;
 }
 

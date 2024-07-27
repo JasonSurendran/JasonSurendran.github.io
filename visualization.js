@@ -11,12 +11,12 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     // Annotations data
     const annotations = [
         { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "50px", left: "200px" } },
-        { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "10px", left: "10px" } },
+        { text: "You may notice that there are mutiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "10px", left: "10px" } },
         { text: "Renewable energy sources are capable of producing massive amounts of energy. With rapid developments in the green energy sector, fossil fuels may be able to be heavily replaced across all industries.", position: { top: "100px", left: "400px" } },
-        { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "150px", left: "600px" } },
+        { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similair to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "150px", left: "600px" } },
         { text: "Like any transformational project, investment is required. Though many of these values are in the billions, most of it is spent in R&D. This means that replication of developed technologies is comparatively inexpensive!", position: { top: "250px", left: "600px" } },
-        { text: "In order for wide spread adoption to occur, the countries with the largest economies must pave the way. Having influential countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "200px", left: "800px" } },
-        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "500px", left: "800px" } },
+        { text: "In order for wide spread adoption to occur, the countires with the largest economies must pave the way. Having influenial countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "200px", left: "800px" } },
+        { text: "Now its your turn! Use the energy type buttons and slider to filter between countires and their initiatives!", position: { top: "500px", left: "800px" } },
     ];
     let currentAnnotationIndex = 0;
 
