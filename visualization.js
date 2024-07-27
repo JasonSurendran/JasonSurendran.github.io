@@ -8,6 +8,16 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     let selectedEnergyType = energyTypes[0];
     let selectedYear = minYear;
 
+    // Annotations data
+    const annotations = [
+        { text: "Annotation 1: Description goes here.", position: { top: "10px", left: "10px" } },
+        { text: "Annotation 2: Description goes here.", position: { top: "50px", left: "200px" } },
+        { text: "Annotation 3: Description goes here.", position: { top: "100px", left: "400px" } },
+        { text: "Annotation 4: Description goes here.", position: { top: "150px", left: "600px" } },
+        { text: "Annotation 5: Description goes here.", position: { top: "200px", left: "800px" } },
+    ];
+    let currentAnnotationIndex = 0;
+
     // Create buttons for each energy type
     const buttonsDiv = d3.select("#buttons");
     energyTypes.forEach(type => {
@@ -21,6 +31,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
                 updateBoxes();
             });
     });
+
     // Create a year slider
     const yearSlider = d3.select("#year-slider")
         .attr("min", minYear)
@@ -63,6 +74,32 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     updateBoxes();
     // Set the initial selected button
     d3.select(`#btn-${selectedEnergyType}`).classed("selected", true);
+
+    // Function to update annotation text and position
+    function updateAnnotation() {
+        const annotation = annotations[currentAnnotationIndex];
+        d3.select("#annotation-text").text(annotation.text);
+        d3.select("#annotation").style("top", annotation.position.top).style("left", annotation.position.left);
+    }
+
+    // Set up annotation navigation
+    d3.select("#prev-annotation").on("click", () => {
+        if (currentAnnotationIndex > 0) {
+            currentAnnotationIndex--;
+            updateAnnotation();
+        }
+    });
+
+    d3.select("#next-annotation").on("click", () => {
+        if (currentAnnotationIndex < annotations.length - 1) {
+            currentAnnotationIndex++;
+            updateAnnotation();
+        }
+    });
+
+    // Initial call to display the first annotation
+    updateAnnotation();
+
 }).catch(error => {
     console.error("Error loading data:", error);
 });
