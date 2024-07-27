@@ -151,7 +151,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         const barGraphDiv = d3.select("#bar-graph");
         barGraphDiv.selectAll("*").remove(); // Clear previous bar graph
 
-        const margin = { top: 20, right: 30, bottom: 90, left: 90 };
+        const margin = { top: 20, right: 30, bottom: 120, left: 90 };
         const width = 1000 - margin.left - margin.right;
         const height = 500 - margin.top - margin.bottom;
 
@@ -181,22 +181,22 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .call(d3.axisLeft(y));
 
         svg.selectAll(".bar")
-        .data(filteredData)
-        .enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
-        .attr("y", d => y(+d[selectedMetric]))
-        .attr("width", x.bandwidth())
-        .attr("height", d => height - y(+d[selectedMetric]))
-        .attr("fill", "steelblue");
+            .data(filteredData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
+            .attr("y", d => y(+d[selectedMetric]))
+            .attr("width", x.bandwidth())
+            .attr("height", d => height - y(+d[selectedMetric]))
+            .attr("fill", "steelblue");
 
         // Add x-axis label
         svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "middle")
             .attr("x", width / 2)
-            .attr("y", height + margin.bottom - 40)
+            .attr("y", height + margin.bottom - 50)  // Increased margin
             .text("Country (Year)");
 
         // Add y-axis label
