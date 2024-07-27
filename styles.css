@@ -1,13 +1,19 @@
-.axis text {
-    font: 10px sans-serif;
-}
-.axis path, .axis line {
-    fill: none;
-    shape-rendering: crispEdges;
-}
-.line {
-    fill: none;
-    stroke: steelblue;
-    stroke-width: 2px;
+.chart {
+    width: 800px;
+    height: 400px;
+    margin: 50px auto;
 }
 
+path {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5;
+}
+
+.bar {
+    fill: orange;
+}
+
+.bubble {
+    fill: green;
+}
