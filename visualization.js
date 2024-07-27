@@ -10,7 +10,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Annotations data
     const annotations = [
-        { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "50px", left: "200px" } },
+        { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "0px", left: "0px" } },
         { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "10px", left: "10px" } },
         { text: "Renewable energy sources are capable of producing massive amounts of energy. With rapid developments in the green energy sector, fossil fuels may be able to be heavily replaced across all industries.", position: { top: "100px", left: "400px" } },
         { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "150px", left: "600px" } },
