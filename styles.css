@@ -13,6 +13,10 @@ h1 {
     margin-bottom: 20px;
 }
 
+#buttons {
+    margin-bottom: 10px;
+}
+
 #buttons button {
     margin: 5px;
     padding: 10px 15px;
@@ -24,8 +28,15 @@ h1 {
     background-color: lightgreen;
 }
 
+#year-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 #year-slider {
-    margin: 20px;
+    margin: 0 10px;
 }
 
 #boxes {
