@@ -21,7 +21,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     ];
     let currentAnnotationIndex = 0;
 
-    // Create buttons for each energy type
+    // Create buttons for each energy types
     const buttonsDiv = d3.select("#buttons");
     buttonsDiv.selectAll("*").remove(); // Ensure no duplicate buttons
     energyTypes.forEach(type => {
