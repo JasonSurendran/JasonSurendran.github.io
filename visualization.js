@@ -11,13 +11,13 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Annotations data
     const annotations = [
-        { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "-70%", left: "70%" } },
-        { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "5%", left: "5%" } },
-        { text: "Renewable energy sources are capable of producing massive amounts of energy. With rapid developments in the green energy sector, fossil fuels may be able to be heavily replaced across all industries.", position: { top: "20%", left: "60%" } },
-        { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "30%", left: "10%" } },
-        { text: "Like any transformational project, investment is required. Though many of these values are in the billions, most of it is spent in R&D. This means that replication of developed technologies is comparatively inexpensive!", position: { top: "15%", left: "40%" } },
-        { text: "In order for wide spread adoption to occur, the countries with the largest economies must pave the way. Having influential countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "25%", left: "80%" } },
-        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "80%", left: "40%" } },
+        { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "-70%", left: "5%" } },
+        { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "5%", left: "15%" } },
+        { text: "Renewable energy sources are capable of producing massive amounts of energy. With rapid developments in the green energy sector, fossil fuels may be able to be heavily replaced across all industries.", position: { top: "20%", left: "30%" } },
+        { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "30%", left: "70%" } },
+        { text: "Like any transformational project, investment is required. Though many of these values are in the billions, most of it is spent in R&D. This means that replication of developed technologies is comparatively inexpensive!", position: { top: "15%", left: "85%" } },
+        { text: "In order for wide spread adoption to occur, the countries with the largest economies must pave the way. Having influential countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "25%", left: "100%" } },
+        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "80%", left: "115%" } },
     ];
     let currentAnnotationIndex = 0;
 
