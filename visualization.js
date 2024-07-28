@@ -119,11 +119,16 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Function to update annotation text and position
     function updateAnnotation() {
-        const annotation = annotations[currentAnnotationIndex];
-        d3.select("#annotation-text").text(annotation.text);
-        d3.select("#annotation")
-            .style("top", annotation.position.top)
-            .style("left", annotation.position.left);
+        if (currentAnnotationIndex < annotations.length) {
+            const annotation = annotations[currentAnnotationIndex];
+            d3.select("#annotation-text").text(annotation.text);
+            d3.select("#annotation")
+                .style("top", annotation.position.top)
+                .style("left", annotation.position.left)
+                .style("display", "block");
+        } else {
+            d3.select("#annotation").style("display", "none");
+        }
     }
 
     // Set up annotation navigation
@@ -135,7 +140,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     });
 
     d3.select("#next-annotation").on("click", () => {
-        if (currentAnnotationIndex < annotations.length - 1) {
+        if (currentAnnotationIndex < annotations.length) {
             currentAnnotationIndex++;
             updateAnnotation();
         }
@@ -181,15 +186,15 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .call(d3.axisLeft(y));
 
         svg.selectAll(".bar")
-        .data(filteredData)
-        .enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
-        .attr("y", d => y(+d[selectedMetric]))
-        .attr("width", x.bandwidth())
-        .attr("height", d => height - y(+d[selectedMetric]))
-        .attr("fill", "steelblue");
+            .data(filteredData)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
+            .attr("y", d => y(+d[selectedMetric]))
+            .attr("width", x.bandwidth())
+            .attr("height", d => height - y(+d[selectedMetric]))
+            .attr("fill", "steelblue");
 
         // Add x-axis label
         svg.append("text")
