@@ -11,17 +11,17 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 
     // Annotations data
     const annotations = [
-        { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "0px", left: "100px" } },
-        { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "0px", left: "200px" } },
-        { text: "Renewable energy sources are capable of producing massive amounts of energy. With rapid developments in the green energy sector, fossil fuels may be able to be heavily replaced across all industries.", position: { top: "0px", left: "300px" } },
-        { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "0px", left: "400px" } },
-        { text: "Like any transformational project, investment is required. Though many of these values are in the billions, most of it is spent in R&D. This means that replication of developed technologies is comparatively inexpensive!", position: { top: "0px", left: "500px" } },
-        { text: "In order for wide spread adoption to occur, the countries with the largest economies must pave the way. Having influential countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "0px", left: "600px" } },
-        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "-1300px", left: "900px" } },
+        { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "10%", left: "50%" } },
+        { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "5%", left: "5%" } },
+        { text: "Renewable energy sources are capable of producing massive amounts of energy. With rapid developments in the green energy sector, fossil fuels may be able to be heavily replaced across all industries.", position: { top: "20%", left: "60%" } },
+        { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "30%", left: "10%" } },
+        { text: "Like any transformational project, investment is required. Though many of these values are in the billions, most of it is spent in R&D. This means that replication of developed technologies is comparatively inexpensive!", position: { top: "15%", left: "40%" } },
+        { text: "In order for wide spread adoption to occur, the countries with the largest economies must pave the way. Having influential countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "25%", left: "80%" } },
+        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "80%", left: "40%" } },
     ];
     let currentAnnotationIndex = 0;
 
-    // Create buttons for each energy types
+    // Create buttons for each energy type
     const buttonsDiv = d3.select("#buttons");
     buttonsDiv.selectAll("*").remove(); // Ensure no duplicate buttons
     energyTypes.forEach(type => {
@@ -181,15 +181,15 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .call(d3.axisLeft(y));
 
         svg.selectAll(".bar")
-            .data(filteredData)
-            .enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
-            .attr("y", d => y(+d[selectedMetric]))
-            .attr("width", x.bandwidth())
-            .attr("height", d => height - y(+d[selectedMetric]))
-            .attr("fill", "steelblue");
+        .data(filteredData)
+        .enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("x", (d, i) => x(`${d['Country']} (${d['Year']}) - ${i}`))
+        .attr("y", d => y(+d[selectedMetric]))
+        .attr("width", x.bandwidth())
+        .attr("height", d => height - y(+d[selectedMetric]))
+        .attr("fill", "steelblue");
 
         // Add x-axis label
         svg.append("text")
@@ -215,3 +215,4 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
 }).catch(error => {
     console.error("Error loading data:", error);
 });
+
