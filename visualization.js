@@ -1,15 +1,13 @@
 d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     const energyTypes = Array.from(new Set(data.map(d => d['Energy Type'])));
-    const years = Array.from(new Set(data.map(d => +d['Year']))).sort((a, b) => a - b); // Ensure years are numbers
+    const years = Array.from(new Set(data.map(d => +d['Year']))).sort((a, b) => a - b); 
     const minYear = d3.min(years);
     const maxYear = d3.max(years);
 
-    // Variables to keep track of selected energy type and year
     let selectedEnergyType = energyTypes[0];
     let selectedYear = minYear;
     let selectedMetric = 'Production (GWh)';
 
-    // Annotations data
     const annotations = [
         { text: "There are many different forms of renewable energy! Popular examples include wind, solar, and hydro, but there are lesser known examples such as geothermal and biomass. Having a combination of these ensures that a country has a diverse energy portfolio in case one of the energy streams fails.", position: { top: "10%", left: "0%" } },
         { text: "You may notice that there are multiple boxes with the same country/year combo. This is because there are different green energy initiatives based around the same energy type that a country does in the same year.", position: { top: "5%", left: "10%" } },
@@ -21,9 +19,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
     ];
     let currentAnnotationIndex = 0;
 
-    // Create buttons for each energy type
     const buttonsDiv = d3.select("#buttons");
-    buttonsDiv.selectAll("*").remove(); // Ensure no duplicate buttons
+    buttonsDiv.selectAll("*").remove(); 
     energyTypes.forEach(type => {
         buttonsDiv.append("button")
             .text(type)
@@ -43,7 +40,6 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             });
     });
 
-    // Create a year slider
     const yearSlider = d3.select("#year-slider")
         .attr("min", minYear)
         .attr("max", maxYear)
@@ -55,12 +51,10 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             updateBarGraph();
         });
 
-    // Set the initial year value display
     d3.select("#year-value").text(minYear);
 
-    // Create buttons for each metric
     const barControlsDiv = d3.select("#bar-controls");
-    barControlsDiv.selectAll("*").remove(); // Ensure no duplicate buttons
+    barControlsDiv.selectAll("*").remove(); 
     const metrics = {
         'btn-production': 'Production (GWh)',
         'btn-installed-capacity': 'Installed Capacity (MW)',
@@ -84,7 +78,6 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             });
     });
 
-    // Function to update the information boxes based on selected energy type and year
     function updateBoxes() {
         const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && +d['Year'] === selectedYear);
         
@@ -105,9 +98,8 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         });
     }
 
-    // Initial call to display boxes
+
     updateBoxes();
-    // Set the initial selected button
     d3.select(`#btn-${selectedEnergyType}`)
         .classed("selected", true)
         .style("font-weight", "bold")
@@ -117,7 +109,6 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         .style("font-weight", "bold")
         .style("background-color", "lightgreen");
 
-    // Function to update annotation text and position
     function updateAnnotation() {
         if (currentAnnotationIndex < annotations.length) {
             const annotation = annotations[currentAnnotationIndex];
@@ -131,7 +122,6 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         }
     }
 
-    // Set up annotation navigation
     d3.select("#prev-annotation").on("click", () => {
         if (currentAnnotationIndex > 0) {
             currentAnnotationIndex--;
@@ -150,15 +140,12 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         }
     });
 
-    // Initial call to display the first annotation
     updateAnnotation();
-
-    // Function to update the bar graph based on selected metric
     function updateBarGraph() {
         const filteredData = data.filter(d => d['Energy Type'] === selectedEnergyType && +d['Year'] === selectedYear);
 
         const barGraphDiv = d3.select("#bar-graph");
-        barGraphDiv.selectAll("*").remove(); // Clear previous bar graph
+        barGraphDiv.selectAll("*").remove(); 
 
         const margin = { top: 20, right: 30, bottom: 120, left: 90 };
         const width = 1000 - margin.left - margin.right;
@@ -200,15 +187,15 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .attr("height", d => height - y(+d[selectedMetric]))
             .attr("fill", "steelblue");
 
-        // Add x-axis label
+ 
         svg.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "middle")
             .attr("x", width / 2)
-            .attr("y", height + margin.bottom - 50)  // Increased margin
+            .attr("y", height + margin.bottom - 50)  
             .text("Country (Year)");
 
-        // Add y-axis label
+
         svg.append("text")
             .attr("class", "y label")
             .attr("text-anchor", "middle")
@@ -219,7 +206,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
             .text(selectedMetric);
     }
 
-    // Initial call to display the bar graph
+
     updateBarGraph();
 }).catch(error => {
     console.error("Error loading data:", error);
