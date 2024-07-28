@@ -17,7 +17,7 @@ d3.csv('complete_renewable_energy_dataset.csv').then(data => {
         { text: "Green energy is also great for the economy. Green energy jobs are among some of the highest paid and fastest growing. Similar to the industrial revolution of the past, some feel like the next revolution will be based around renewable energy.", position: { top: "0px", left: "400px" } },
         { text: "Like any transformational project, investment is required. Though many of these values are in the billions, most of it is spent in R&D. This means that replication of developed technologies is comparatively inexpensive!", position: { top: "0px", left: "500px" } },
         { text: "In order for wide spread adoption to occur, the countries with the largest economies must pave the way. Having influential countries (e.g USA, China, India etc) adopt renewable energies signals to other countries that this is the future and encourages adoption by them as well.", position: { top: "0px", left: "600px" } },
-        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "1100px", left: "800px" } },
+        { text: "Now its your turn! Use the energy type buttons and slider to filter between countries and their initiatives!", position: { top: "-200px", left: "600px" } },
     ];
     let currentAnnotationIndex = 0;
 
